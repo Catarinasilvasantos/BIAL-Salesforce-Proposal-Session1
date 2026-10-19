@@ -27,27 +27,27 @@
       heading:"Inês turns dialogue into medical insight",
       summary:"Medical Affairs reviews the question before Inês’s scientific exchange with Artur. A broader educational need emerges and is captured separately as a Medical Insight.",
       moments:["Follow the Inquiry into Medical Affairs for a reviewed scientific response.","Meet Artur for the MSL scientific exchange.","Record the broader educational need as an Insight for medical review."],
-      handoff:"After the break, the story follows an educational hospital session."
+      handoff:"After the break, the story follows an educational session at Penafiel Park Hotel."
     },
     {
       title:"Coffee break",person:"A pause together",note:"10 minutes",color:"#916900",cast:[],agenda:3,
       heading:"A moment to pause",
       summary:"A ten-minute break between the two visits and event management. Coffee, pastel de nata and a chance to reflect on the story so far.",
-      moments:["Pause after the Medical Inquiry and Medical Insight sequence.","Return to see how Sofia brings the hospital session together."],
+      moments:["Pause after the Medical Inquiry and Medical Insight sequence.","Return to see how Sofia brings the event together."],
       handoff:"Sofia takes the lead on planning the event."
     },
     {
       title:"Bringing the event to life",person:"Sofia Martins",note:"Plan · approve · register",color:"#007f9a",cast:["sofia","artur"],agenda:4,
-      heading:"Sofia plans the hospital session",
-      summary:"Sofia manages the preparation, approvals and logistics for a later educational session at Hospital de Penafiel, with Artur as the speaker.",
+      heading:"Sofia plans the event",
+      summary:"Sofia manages the preparation, approvals and logistics for a later educational session at Penafiel Park Hotel, with Artur as the speaker.",
       moments:["Prepare the event, budget and approvals at BIAL’s Trofa offices.","Coordinate the invitation and speaker registration.","Keep event registration separate from optional marketing consent."],
-      handoff:"The story moves from event planning to the hospital auditorium."
+      handoff:"The story moves from event planning to Penafiel Park Hotel."
     },
     {
-      title:"Sharing knowledge",person:"Dr. Artur Costa",note:"Hospital de Penafiel",color:"#163986",cast:["artur","sofia"],agenda:4,
+      title:"Sharing knowledge",person:"Dr. Artur Costa",note:"Penafiel Park Hotel",color:"#163986",cast:["artur","sofia"],agenda:4,
       heading:"Artur takes the stage",
-      summary:"At the later hospital session, Artur is the speaker. Sofia follows participation through to event closure, connecting the educational moment with the event record.",
-      moments:["Enter the auditorium and follow Artur’s presentation.","Record speaker participation and reconcile attendance.","Close the event and review the illustrative expenditure."],
+      summary:"At the later session at Penafiel Park Hotel, Artur is the speaker. Sofia follows participation through to event closure, connecting the educational moment with the event record.",
+      moments:["Join the event and follow Artur’s presentation.","Record speaker participation and reconcile attendance.","Close the event and review the illustrative expenditure."],
       handoff:"João connects the relationship to the wider account strategy."
     },
     {
