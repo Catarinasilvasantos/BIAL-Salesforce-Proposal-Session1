@@ -93,9 +93,9 @@
   .kicker-title .hl{color:var(--cyan)}
   .kicker-title::after{content:"";display:block;width:56px;height:3px;border-radius:2px;background:var(--yellow);margin:18px auto 0}
 
-  /* ---------- Map ---------- */
+  /* ---------- Session agenda ---------- */
   main{max-width:1280px;margin:0 auto;padding:0 28px 80px}
-  .map-card{position:relative;background:#fff;border-radius:28px;box-shadow:0 20px 60px -20px rgba(0,58,120,.25);padding:34px 30px 18px;z-index:2}
+  .map-card{position:relative;background:#fff;border-radius:28px;box-shadow:0 20px 60px -20px rgba(0,58,120,.25);padding:34px 30px 30px;z-index:2}
   .map-head{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin:0 8px 8px}
   .map-head h2{margin:0;font-size:26px;color:var(--navy);font-weight:800}
   .map-head p{margin:4px 0 0;color:var(--muted)}
@@ -108,32 +108,14 @@
   .map-head .btn:hover,.panel-foot .btn:hover{background:#e9edf2;color:#4a5562;border-color:#c3ccd6}
   .btn:disabled{opacity:.35;pointer-events:none}
 
-  svg#trail{width:100%;height:auto;display:block;overflow:visible}
-  .trail-bg{fill:none;stroke:#e9eff6;stroke-width:26;stroke-linecap:round;stroke-linejoin:round}
-  .trail-dash{fill:none;stroke:#c5d3e3;stroke-width:3;stroke-dasharray:2 12;stroke-linecap:round}
-  .trail-done{fill:none;stroke:url(#grad);stroke-width:8;stroke-linecap:round;stroke-linejoin:round;transition:stroke-dashoffset .7s ease}
-  .stop{cursor:pointer;outline:none}
-  .stop .halo{fill:currentColor;opacity:0;transition:opacity .25s, r .25s}
-  .stop .ring{fill:#fff;stroke:currentColor;stroke-width:4;transition:all .25s}
-  .stop .num{font-weight:800;font-size:20px;fill:currentColor;text-anchor:middle;dominant-baseline:central;pointer-events:none}
-  .stop .lbl{font-size:15px;font-weight:400;fill:var(--ink);text-anchor:middle;pointer-events:none}
-  .stop .tag{font-size:11px;font-weight:800;letter-spacing:.12em;text-anchor:middle;fill:currentColor;text-transform:uppercase;pointer-events:none}
-  .stop:hover .halo,.stop:focus-visible .halo{opacity:.14}
-  .stop.done .ring{fill:currentColor}
-  .stop.done .num{fill:#fff}
-  .stop.active .halo{opacity:.2;animation:pulse 1.8s ease-in-out infinite}
-  .stop.active .ring{fill:currentColor}
-  .stop.active .num{fill:#fff}
-  @keyframes pulse{0%,100%{opacity:.22}50%{opacity:.06}}
-  .flag text{font-size:12px;font-weight:800;letter-spacing:.14em;fill:var(--muted)}
-
   /* ---------- Detail ---------- */
-  .detail{margin-top:34px;display:grid;grid-template-columns:320px 1fr;gap:28px}
+  .detail{margin-top:26px;display:grid;grid-template-columns:320px minmax(0,1fr);gap:28px;align-items:start;scroll-margin-top:24px}
   .side{position:sticky;top:24px;align-self:start;background:#fff;border-radius:var(--radius);padding:18px;box-shadow:0 10px 30px -18px rgba(0,58,120,.3)}
   .side h4{margin:6px 10px 12px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
   .side ol{list-style:none;margin:0;padding:0;display:grid;gap:4px}
   .side li button{width:100%;text-align:left;font:inherit;font-size:14px;font-weight:600;color:var(--ink);background:none;border:0;padding:10px 12px;border-radius:12px;cursor:pointer;display:flex;gap:12px;align-items:center}
-  .side li button:hover{background:var(--bg)}
+  .side li button:hover{background:#eef3f9}
+  .side li button:focus-visible,.btn:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
   .side li button.active{background:var(--navy);color:#fff}
   .side li .n{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800;color:#fff}
   .side li button.done:not(.active) .t{color:var(--muted);text-decoration:line-through;text-decoration-color:#b8c5d6}
@@ -205,7 +187,7 @@
     .hdr::before{display:none}
     .hdr::after{width:180px;height:180px;right:-70px;top:-80px}
     .progress{width:90px}
-    .map-card{padding:24px 14px 10px}
+    .map-card{padding:24px 14px}
     .panel-head,.panel-body,.panel-foot{padding-left:22px;padding-right:22px}
   }
   @media print{
@@ -244,14 +226,14 @@
 
 <div class="kicker-title" id="trailTitle">
   <h2>Keeping <span class="hl">interaction</span> in mind</h2>
-  <p>Today's trail: from vision to next steps</p>
+  <p>Today's agenda: from vision to next steps</p>
 </div>
 
 <main>
-  <section class="map-card" aria-label="Session trail map">
+  <section class="map-card" aria-labelledby="sessionTitle">
     <div class="map-head">
       <div>
-        <h2>The session trail</h2>
+        <h2 id="sessionTitle">The session trail</h2>
       </div>
       <div class="controls">
         <button class="btn" id="resetBtn" title="Clear completed stops">Reset</button>
@@ -259,15 +241,13 @@
         <button class="btn primary" id="nextBtn">Next stop →</button>
       </div>
     </div>
-    <svg id="trail" role="list"></svg>
-  </section>
-
-  <section class="detail">
-    <aside class="side">
-      <h4>Agenda</h4>
-      <ol id="agenda"></ol>
-    </aside>
-    <div id="panelHost"></div>
+    <div class="detail">
+      <aside class="side" aria-labelledby="agendaTitle">
+        <h4 id="agendaTitle">Agenda</h4>
+        <ol id="agenda"></ol>
+      </aside>
+      <div id="panelHost"></div>
+    </div>
   </section>
 </main>
 
@@ -297,7 +277,7 @@ const STOPS = [
     points:[
       "Introductions from the BIAL and Salesforce teams",
       "Confirm session objectives and BIAL's success criteria",
-      "Walk through the trail: vision → four live demos → platform → roadmap → commercials",
+      "Walk through the agenda: vision → two visits → break → events → key accounts → marketing → roadmap → next steps",
       "Ground rules: interrupt anytime, park deeper topics for the Q&A"
     ],
     value:"Agreeing the objectives up front keeps every demo tied to BIAL's priorities rather than to feature lists.",
@@ -316,20 +296,6 @@ const STOPS = [
     value:"Shows a single platform that grows with BIAL's international footprint and therapeutic areas, so teams don't run a separate tool for each function.",
     personas:["Leadership","IT","Marketing"],
     products:["Life Sciences Cloud","Data 360","Agentforce","Customer 360"]
-  },
-  {
-    type:"demo", short:"Marketing Automation & Consent Management", title:"Marketing Automation & Consent Management",
-    summary:"Running compliant, personalised HCP journeys where consent is captured once and respected everywhere.",
-    points:[
-      "Build an HCP segment from unified CRM and engagement data",
-      "Orchestrate a multi-step email/web journey with approved content",
-      "Capture and manage consent and channel preferences (GDPR-ready)",
-      "Consent changes flow instantly to field and medical channels",
-      "Engagement signals go back to the rep as next-best actions"
-    ],
-    value:"Marketing and field share one consent record and one engagement history, which cuts compliance risk and stops HCPs receiving duplicate messages.",
-    personas:["Marketing","Compliance","Sales Rep"],
-    products:["Marketing Cloud / Agentforce Marketing","Consent Management","Data 360","Content approval"]
   },
   {
     type:"demo", short:"Two Visits, One HCP:Medical Rep & MSL", title:"Two Visits, One HCP: Medical Representative & Medical Science Liaison",
@@ -379,18 +345,18 @@ const STOPS = [
     products:["Account Planning","Territory Management","Stakeholder maps","Agentforce"]
   },
   {
-    type:"tech", short:"Solution Architecture", title:"Architecture, integration, AI & governance",
-    summary:"How it all fits into BIAL's landscape: data, integrations, trusted AI and governance.",
+    type:"demo", short:"Marketing Automation & Consent Management", title:"Marketing Automation & Consent Management",
+    summary:"Running compliant, personalised HCP journeys where consent is captured once and respected everywhere.",
     points:[
-      "Reference architecture: Life Sciences Cloud, Data 360, Marketing and analytics",
-      "Integration patterns with ERP, master data, HCP reference data and medical systems",
-      "Agentforce and the Trust Layer: grounded, secure, auditable AI",
-      "Security, privacy, GxP considerations and data residency",
-      "Governance model: release management, org strategy and a Centre of Excellence"
+      "Build an HCP segment from unified CRM and engagement data",
+      "Orchestrate a multi-step email/web journey with approved content",
+      "Capture and manage consent and channel preferences (GDPR-ready)",
+      "Consent changes flow instantly to field and medical channels",
+      "Engagement signals go back to the rep as next-best actions"
     ],
-    value:"Gives BIAL's IT and compliance teams confidence that the platform scales safely across countries and functions.",
-    personas:["IT","Compliance"],
-    products:["MuleSoft","Data 360","Trust Layer","Shield"]
+    value:"Marketing and field share one consent record and one engagement history, which cuts compliance risk and stops HCPs receiving duplicate messages.",
+    personas:["Marketing","Compliance","Sales Rep"],
+    products:["Marketing Cloud / Agentforce Marketing","Consent Management","Data 360","Content approval"]
   },
   {
     type:"tech", short:"LSC Roadmap", title:"Life Sciences Cloud roadmap",
@@ -404,19 +370,6 @@ const STOPS = [
     value:"Shows BIAL is investing in a platform that is moving in the same direction as its own strategy.",
     personas:["Leadership","IT","Medical Lead"],
     products:["Release roadmap","Agentforce","Patient & medical capabilities"]
-  },
-  {
-    type:"commerc", short:"Commercials & TCO", title:"Commercial model, licensing logic & TCO approach",
-    summary:"A transparent view of how licensing works and how total cost of ownership is evaluated.",
-    points:[
-      "Licensing logic: user-based editions by persona plus platform add-ons",
-      "Sizing approach across countries, functions and user types",
-      "TCO framework: licences, implementation, run costs and decommissioning savings",
-      "Phasing options to align investment with value realisation"
-    ],
-    value:"Lets BIAL compare options like-for-like and build a business case its finance and procurement teams can stand behind.",
-    personas:["Leadership","Procurement","IT"],
-    products:["Licensing model","TCO framework","Phased roadmap"]
   },
   {
     type:"close", short:"Close & Next steps", title:"Close, Q&A and next steps",
@@ -434,117 +387,19 @@ const STOPS = [
 ];
 
 /* ---------- State ---------- */
-const KEY = "bial-trailmap-v1";
+const KEY = "bial-agenda-v2";
 let state = { active: 0, done: [] };
-try { state = Object.assign(state, JSON.parse(localStorage.getItem(KEY) || "{}")); } catch(e){}
+try {
+  const saved = JSON.parse(localStorage.getItem(KEY) || "{}");
+  if (saved && Number.isInteger(saved.active) && saved.active >= 0 && saved.active < STOPS.length) state.active = saved.active;
+  if (saved && Array.isArray(saved.done)) state.done = [...new Set(saved.done.filter(i => Number.isInteger(i) && i >= 0 && i < STOPS.length))];
+} catch(e){}
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){} };
-
-/* ---------- Legend & stats ---------- */
-
-/* ---------- Trail SVG ---------- */
-const svg = document.getElementById("trail");
-const NS = "http://www.w3.org/2000/svg";
-let pathLen = 0, stopLens = [];
-
-function layout(){
-  const W = 1200, perRow = window.innerWidth < 720 ? 2 : (window.innerWidth < 1000 ? 3 : 4);
-  const padX = 110, rowH = 200, top = 70, R = rowH / 2;
-  const rows = Math.ceil(STOPS.length / perRow);
-  const gap = (W - padX * 2) / (perRow - 1);
-  const pts = STOPS.map((s, i) => {
-    const r = Math.floor(i / perRow), c = i % perRow;
-    const col = r % 2 === 0 ? c : perRow - 1 - c;
-    return { x: padX + col * gap, y: top + r * rowH, r };
-  });
-  // path: straight runs along rows, semicircle turns at the ends
-  let d = `M ${padX - 60} ${top} L ${pts[0].x} ${top}`;
-  for (let r = 0; r < rows; r++){
-    const y = top + r * rowH, ltr = r % 2 === 0;
-    const endX = ltr ? padX + (perRow - 1) * gap : padX;
-    d += ` L ${endX} ${y}`;
-    if (r < rows - 1){
-      d += ` A ${R} ${R} 0 0 ${ltr ? 1 : 0} ${endX} ${y + rowH}`;
-    }
-  }
-  const last = pts[pts.length - 1];
-  const lastLtr = last.r % 2 === 0;
-  d += ` L ${last.x + (lastLtr ? 60 : -60)} ${last.y}`;
-  return { W, H: top + (rows - 1) * rowH + 110, pts, d, last, lastLtr };
-}
-
-function el(tag, attrs, parent){
-  const n = document.createElementNS(NS, tag);
-  for (const k in attrs) n.setAttribute(k, attrs[k]);
-  if (parent) parent.appendChild(n);
-  return n;
-}
-
-function wrap(text, max){
-  const words = text.split(" "), lines = [""];
-  words.forEach(w => {
-    const cur = lines[lines.length - 1];
-    if ((cur + " " + w).trim().length > max && cur) lines.push(w); else lines[lines.length - 1] = (cur + " " + w).trim();
-  });
-  return lines.slice(0, 3);
-}
-
-function drawTrail(){
-  const L = layout();
-  svg.innerHTML = "";
-  svg.setAttribute("viewBox", `0 0 ${L.W} ${L.H}`);
-  const defs = el("defs", {}, svg);
-  const g = el("linearGradient", { id: "grad", x1: "0", x2: "1", y1: "0", y2: "1" }, defs);
-  [["0%","#00add4"],["50%","#5e43b0"],["100%","#ff2d8a"]].forEach(([o,c]) => el("stop", { offset:o, "stop-color":c }, g));
-
-  el("path", { d: L.d, class: "trail-bg" }, svg);
-  el("path", { d: L.d, class: "trail-dash" }, svg);
-  const done = el("path", { d: L.d, class: "trail-done", id: "donePath" }, svg);
-  pathLen = done.getTotalLength();
-  done.style.strokeDasharray = pathLen;
-
-  // distance along the path for each stop (sample the path)
-  stopLens = L.pts.map(p => {
-    let best = 0, bestD = Infinity;
-    for (let l = 0; l <= pathLen; l += 4){
-      const q = done.getPointAtLength(l), dd = (q.x - p.x) ** 2 + (q.y - p.y) ** 2;
-      if (dd < bestD){ bestD = dd; best = l; }
-    }
-    return best;
-  });
-
-  // start / finish flags
-  const f1 = el("g", { class: "flag" }, svg);
-  el("text", { x: L.pts[0].x - 60, y: L.pts[0].y - 26, "text-anchor": "middle" }, f1).textContent = "START";
-  const f2 = el("g", { class: "flag" }, svg);
-  el("text", { x: L.last.x + (L.lastLtr ? 60 : -60), y: L.last.y - 26, "text-anchor": "middle" }, f2).textContent = "FINISH";
-
-  L.pts.forEach((p, i) => {
-    const s = STOPS[i], t = TYPES[s.type];
-    const grp = el("g", { class: "stop", tabindex: "0", role: "listitem", "aria-label": `Stop ${i + 1}: ${s.title}`, "data-i": i, style: `color:${t.color}` }, svg);
-    el("circle", { cx: p.x, cy: p.y, r: 44, class: "halo" }, grp);
-    el("circle", { cx: p.x, cy: p.y, r: 28, class: "ring" }, grp);
-    const num = el("text", { x: p.x, y: p.y + 1, class: "num" }, grp);
-    num.textContent = s.type === "break" ? "☕" : String(i + 1).padStart(2, "0");
-    el("text", { x: p.x, y: p.y + 56, class: "tag" }, grp).textContent = t.label;
-    wrap(s.short, 20).forEach((line, li) => {
-      el("text", { x: p.x, y: p.y + 76 + li * 18, class: "lbl" }, grp).textContent = line;
-    });
-    grp.addEventListener("click", () => go(i));
-    grp.addEventListener("keydown", e => { if (e.key === "Enter") go(i); });
-  });
-  refresh(false);
-}
-
-/* ---------- Top menu (jump to stops) ---------- */
-const MENU = [["Welcome",0],["Vision",1],["Demos",2],["Platform",7],["Roadmap",8],["Commercials",9],["Next steps",10]];
-const menu = document.getElementById("menu");
-if (menu) menu.innerHTML = MENU.map(([l,i]) => `<a data-i="${i}">${l}</a>`).join("");
-if (menu) menu.addEventListener("click", e => { const a = e.target.closest("a"); if (a) go(+a.dataset.i); });
 
 /* ---------- Agenda ---------- */
 const agenda = document.getElementById("agenda");
 agenda.innerHTML = STOPS.map((s, i) =>
-  `<li><button data-i="${i}"><span class="n" style="background:${TYPES[s.type].color}">${s.type === "break" ? "☕" : i + 1}</span><span class="t">${s.short}</span></button></li>`
+  `<li><button type="button" data-i="${i}" aria-controls="panelHost"><span class="n" style="background:${TYPES[s.type].color}">${i + 1}</span><span class="t">${s.short}</span></button></li>`
 ).join("");
 agenda.addEventListener("click", e => { const b = e.target.closest("button"); if (b) go(+b.dataset.i); });
 
@@ -600,18 +455,12 @@ function toggleDone(i, v){
 }
 
 function refresh(scroll){
-  svg.querySelectorAll(".stop").forEach(g => {
-    const i = +g.dataset.i;
-    g.classList.toggle("active", i === state.active);
-    g.classList.toggle("done", state.done.includes(i) && i !== state.active);
-  });
   agenda.querySelectorAll("button").forEach(b => {
     const i = +b.dataset.i;
     b.classList.toggle("active", i === state.active);
+    if (i === state.active) b.setAttribute("aria-current", "step"); else b.removeAttribute("aria-current");
     b.classList.toggle("done", state.done.includes(i));
   });
-  const dp = document.getElementById("donePath");
-  if (dp) dp.style.strokeDashoffset = pathLen - (stopLens[state.active] || 0);
   const n = state.done.length, tot = STOPS.length;
   const pt = document.getElementById("progressTxt"), pb = document.getElementById("progressBar");
   if (pt) pt.textContent = `${n} / ${tot} complete`;
@@ -632,8 +481,7 @@ document.addEventListener("keydown", e => {
   if (e.key === " " && e.target === document.body){ e.preventDefault(); toggleDone(state.active, !state.done.includes(state.active)); }
 });
 
-let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(drawTrail, 150); });
-drawTrail();
+refresh(false);
 </script>
 </body>
 </html>
