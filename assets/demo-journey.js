@@ -55,13 +55,13 @@
       heading:"João connects the account plan",
       summary:"João brings stakeholders, account objectives and agreed actions into one view. The account plan connects the commercial relationship while scientific responsibilities remain with Medical Affairs.",
       moments:["Explore the stakeholder map and account relationships.","Review the Account Plan and agree the next action.","Use the aggregated dashboard to review account progress."],
-      handoff:"Rita takes us back to the campaign that began the relationship."
+      handoff:"Rita takes us behind the scenes of Marketing Automation and the campaign that began the relationship."
     },
     {
-      title:"Back to the beginning",person:"Rita Almeida",note:"Earlier · campaign creation",color:"#a82768",cast:["rita","artur"],agenda:6,
-      heading:"Rita reveals how it all began",
-      summary:"The final demo is a look back, before Artur received the invitation. Rita shows the marketing work behind the first conversation and how the relationship is supported from the start.",
-      moments:["Segment → campaign → content: prepare the audience, plan and invitation.","Consent: respect channel choices and keep event registration separate.","Follow-up: connect the reply and service request to the next conversation."],
+      title:"Marketing Automation",person:"Rita Almeida",note:"Earlier · campaign creation",color:"#a82768",cast:["rita","artur"],agenda:6,
+      heading:"Marketing Automation & Consent Management",
+      summary:"The final demo is a look back, before Artur received the invitation. Rita shows Marketing Automation from segment to campaign, content, consent and follow-up, revealing how the first conversation began.",
+      moments:["Segment: define the relevant HCP audience using profiles, interests and permitted engagement data.","Campaign: plan the outreach behind Artur’s original invitation.","Content: prepare the invitation and requested follow-up for review.","Consent: respect channel preferences and suppression, keeping event registration separate.","Follow-up: route reading and visit requests to the right owner and reconnect with Artur."],
       handoff:"One invitation. A continuous relationship."
     }
   ];
