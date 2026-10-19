@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/demo-journey.css">
 <style>
   :root{
     --navy:#163986; --navy-2:#0f2a66; --blue:#008cc6; --cyan:#00b9d6; --aqua:#00cee2;
@@ -249,6 +250,62 @@
       <div id="panelHost"></div>
     </div>
   </section>
+
+  <section class="demo-cast" id="demoPersonas" aria-labelledby="demoPersonasTitle">
+    <div class="demo-heading">
+      <span class="demo-eyebrow">Meet the personas</span>
+      <h2 id="demoPersonasTitle">One relationship. Five perspectives.</h2>
+      <p>Meet the people who connect the field, medical, events, account strategy and marketing moments in the BIAL demo.</p>
+    </div>
+    <div class="cast-grid">
+      <article class="cast-card" id="persona-artur" style="--cast-color:#163986">
+        <div class="cast-portrait"><img src="assets/personas/artur.png" alt="Dr. Artur Costa, Neurologist" width="1024" height="1024" loading="lazy" decoding="async"></div>
+        <div class="cast-copy"><h3>Dr. Artur Costa</h3><p class="cast-role">Neurologist</p><p class="cast-note">The neurologist at the centre of the story, from first reply to event speaker.</p></div>
+      </article>
+      <article class="cast-card" id="persona-sofia" style="--cast-color:#007f9a">
+        <div class="cast-portrait"><img src="assets/personas/sofia.png" alt="Sofia Martins, Medical Representative" width="1024" height="1024" loading="lazy" decoding="async"></div>
+        <div class="cast-copy"><h3>Sofia Martins</h3><p class="cast-role">Medical Representative</p><p class="cast-note">Connects the field visit with Medical Affairs and leads the event planning.</p></div>
+      </article>
+      <article class="cast-card" id="persona-ines" style="--cast-color:#5e43b0">
+        <div class="cast-portrait"><img src="assets/personas/ines.png" alt="Dr. Inês Carvalho, Medical Science Liaison" width="1024" height="1024" loading="lazy" decoding="async"></div>
+        <div class="cast-copy"><h3>Dr. Inês Carvalho</h3><p class="cast-role">Medical Science Liaison</p><p class="cast-note">Leads the scientific exchange and captures the broader educational need.</p></div>
+      </article>
+      <article class="cast-card" id="persona-joao" style="--cast-color:#006fa6">
+        <div class="cast-portrait"><img src="assets/personas/joao.png" alt="João Ferreira, Key Account Manager" width="1024" height="1024" loading="lazy" decoding="async"></div>
+        <div class="cast-copy"><h3>João Ferreira</h3><p class="cast-role">Key Account Manager</p><p class="cast-note">Connects stakeholders, account objectives and agreed next actions.</p></div>
+      </article>
+      <article class="cast-card" id="persona-rita" style="--cast-color:#a82768">
+        <div class="cast-portrait"><img src="assets/personas/rita.png" alt="Rita Almeida, Marketing Manager" width="1024" height="1024" loading="lazy" decoding="async"></div>
+        <div class="cast-copy"><h3>Rita Almeida</h3><p class="cast-role">Marketing Manager</p><p class="cast-note">Shows the campaign, content and consent behind the first invitation.</p></div>
+      </article>
+    </div>
+    <p class="cast-caption">Fictional personas for this demonstration. <a href="assets/personas/LICENSE-MODELS.txt">Portrait credits</a></p>
+  </section>
+
+  <section class="demo-journey" id="demoFlow" aria-labelledby="demoFlowTitle">
+    <div class="flow-heading">
+      <div class="demo-heading">
+        <span class="demo-eyebrow">The demo trailmap</span>
+        <h2 id="demoFlowTitle">Follow the story, one connection at a time.</h2>
+        <p>Start with Artur’s first reply. Follow the visits, event and account strategy, then go back to the beginning with Rita. Select a stop to explore the demo.</p>
+      </div>
+      <span class="flow-order">In presentation order</span>
+    </div>
+    <div class="flow-map" id="demoFlowMap">
+      <svg class="flow-line" id="demoFlowLine" aria-hidden="true" focusable="false"><path class="route-base"></path><path class="route-dash"></path></svg>
+      <ol class="flow-stops" id="demoFlowStops" aria-label="Demo flow"></ol>
+    </div>
+    <div class="flow-insight" id="demoFlowPanel" role="region" aria-labelledby="demoFlowStepTitle" aria-live="polite" aria-atomic="true"></div>
+    <div class="flow-footer">
+      <button class="flow-agenda-link" type="button" id="demoFlowAgenda">View agenda item 3 ↗</button>
+      <div class="controls">
+        <button class="btn" type="button" id="demoFlowPrev">← Previous</button>
+        <span class="flow-position" id="demoFlowPosition" aria-label="Current demo step">1 / 8</span>
+        <button class="btn primary" type="button" id="demoFlowNext">Next moment →</button>
+      </div>
+    </div>
+    <p class="flow-payoff">One invitation. A continuous relationship.</p>
+  </section>
 </main>
 
 <footer>
@@ -483,5 +540,6 @@ document.addEventListener("keydown", e => {
 
 refresh(false);
 </script>
+<script src="assets/demo-journey.js"></script>
 </body>
 </html>
